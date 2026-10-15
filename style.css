@@ -1,0 +1,386 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(at 10% 15%, rgba(99, 102, 241, 0.35) 0px, transparent 50%),
+    radial-gradient(at 90% 85%, rgba(236, 72, 153, 0.35) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* Ambient Floating Background Orbs for Glassmorphism */
+.glass-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 360px;
+  height: 360px;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  top: 5%;
+  left: 5%;
+  opacity: 0.55;
+}
+
+.orb-2 {
+  width: 380px;
+  height: 380px;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  bottom: 5%;
+  right: 5%;
+  opacity: 0.55;
+  animation-duration: 16s;
+  animation-delay: -4s;
+}
+
+.orb-3 {
+  width: 260px;
+  height: 260px;
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
+  bottom: 25%;
+  left: 20%;
+  opacity: 0.45;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 20px) scale(1.06);
+  }
+  100% {
+    transform: translate(-20px, 35px) scale(0.96);
+  }
+}
+
+/* Glassmorphism Card Container */
+.converter-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  padding: 2.25rem;
+}
+
+/* Header */
+.converter-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.converter-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.converter-header p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+/* Form Styles */
+.converter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Form Inputs and Selects */
+input[type="number"],
+select {
+  width: 100%;
+  height: 50px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+/* Custom dropdown icon */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+/* Dropdown Menu Options Styling */
+select option {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+select optgroup {
+  background-color: #020617;
+  color: #818cf8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 10px;
+}
+
+input[type="number"]::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Remove number spin buttons */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Focus States */
+input[type="number"]:focus,
+select:focus {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+/* Units row with Swap button */
+.units-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.swap-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c7d2fe;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.35rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.swap-button:hover {
+  background: #6366f1;
+  color: #ffffff;
+  border-color: #818cf8;
+  transform: rotate(180deg) scale(1.05);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+/* Glass Result Box */
+.result-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px dashed rgba(165, 180, 252, 0.35);
+  border-radius: 16px;
+  padding: 1.35rem 1.25rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.result-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.result-value {
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: #818cf8;
+  text-shadow: 0 2px 10px rgba(129, 140, 248, 0.3);
+  word-break: break-all;
+}
+
+.formula-text {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  margin-top: 0.45rem;
+}
+
+/* Incompatible units error state */
+.result-box.error {
+  border-color: rgba(248, 113, 113, 0.5);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.result-box.error .result-value {
+  color: #f87171;
+  font-size: 1.25rem;
+  text-shadow: none;
+}
+
+.result-box.error .formula-text {
+  color: #fca5a5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  .converter-container {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+    max-width: 100%;
+  }
+
+  .converter-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .converter-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .converter-header p {
+    font-size: 0.85rem;
+  }
+
+  .converter-form {
+    gap: 1rem;
+  }
+
+  .form-group {
+    gap: 0.35rem;
+  }
+
+  .form-group label {
+    font-size: 0.75rem;
+  }
+
+  input[type="number"],
+  select {
+    height: 48px;
+    font-size: 0.95rem;
+    padding: 0 0.85rem;
+  }
+
+  select option {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  select optgroup {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+
+  .units-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  /* Swap button: compact circular button neatly centered between From and To */
+  .swap-button {
+    align-self: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    margin: 0.1rem auto;
+    font-size: 1.25rem;
+    transform: rotate(90deg);
+  }
+
+  .swap-button:hover {
+    transform: rotate(270deg) scale(1.08);
+  }
+
+  .result-box {
+    padding: 1.15rem 1rem;
+  }
+
+  .result-value {
+    font-size: 1.6rem;
+  }
+
+  .formula-text {
+    font-size: 0.82rem;
+  }
+}

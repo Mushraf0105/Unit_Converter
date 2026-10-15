@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient Background Orbs for Glassmorphism -->
+  <div class="glass-bg-container" aria-hidden="true">
+    <div class="glass-bg-orb orb-1"></div>
+    <div class="glass-bg-orb orb-2"></div>
+    <div class="glass-bg-orb orb-3"></div>
+  </div>
+
+  <main class="converter-container">
+    <header class="converter-header">
+      <h1>Unit Converter</h1>
+      <p>Convert easily between length and weight units</p>
+    </header>
+
+    <form class="converter-form" id="converterForm" onsubmit="return false;">
+      <!-- Input Value Section -->
+      <div class="form-group">
+        <label for="inputValue">Enter Value</label>
+        <input 
+          type="number" 
+          id="inputValue" 
+          placeholder="Enter a number..." 
+          value="1" 
+          step="any"
+        />
+      </div>
+
+      <!-- Unit Selection Section -->
+      <div class="units-row">
+        <!-- From Unit Dropdown -->
+        <div class="form-group">
+          <label for="fromUnit">From</label>
+          <select id="fromUnit">
+            <optgroup label="Length">
+              <option value="meters" selected>Meters (m)</option>
+              <option value="feet">Feet (ft)</option>
+              <option value="kilometers">Kilometers (km)</option>
+            </optgroup>
+            <optgroup label="Weight">
+              <option value="kilograms">Kilograms (kg)</option>
+              <option value="pounds">Pounds (lb)</option>
+              <option value="grams">Grams (g)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Swap Button -->
+        <button type="button" id="swapBtn" class="swap-button" title="Swap Units" aria-label="Swap Units">
+          ⇄
+        </button>
+
+        <!-- To Unit Dropdown -->
+        <div class="form-group">
+          <label for="toUnit">To</label>
+          <select id="toUnit">
+            <optgroup label="Length">
+              <option value="meters">Meters (m)</option>
+              <option value="feet" selected>Feet (ft)</option>
+              <option value="kilometers">Kilometers (km)</option>
+            </optgroup>
+            <optgroup label="Weight">
+              <option value="kilograms">Kilograms (kg)</option>
+              <option value="pounds">Pounds (lb)</option>
+              <option value="grams">Grams (g)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- Result Display Section -->
+      <div class="result-box">
+        <span class="result-label">Result:</span>
+        <div class="result-value" id="resultValue">3.28 ft</div>
+        <p class="formula-text" id="formulaText">1 Meter = 3.2808 Feet</p>
+      </div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
